@@ -1,16 +1,23 @@
 name: Build and Test Java App
-on: [push]
+
+on:
+  push:            # run on every push
+  workflow_dispatch:  # allow manual runs from Actions tab
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
+          distribution: temurin   # <-- REQUIRED
           java-version: '17'
-      - name: Build
+
+      - name: Compile
         run: javac Hello.java
+
       - name: Run
         run: java Hello
