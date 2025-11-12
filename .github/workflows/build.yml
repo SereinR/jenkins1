@@ -1,0 +1,16 @@
+name: Build and Test Java App
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+      - name: Build
+        run: javac Hello.java
+      - name: Run
+        run: java Hello
